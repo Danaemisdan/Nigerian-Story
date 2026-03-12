@@ -1,0 +1,102 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { BookOpen, Cpu, ArrowRight } from 'lucide-react';
+import './Home.css';
+
+const TITLE = "THE NIGERIA STORY";
+
+export default function Home() {
+    return (
+        <div className="home-cinematic">
+
+            {/* ── Cinematic Splash Hero ── */}
+            <section className="hero-splash">
+                <div className="hero-splash-bg" />
+
+                <div className="hero-splash-content">
+
+                    {/* Flag-wave title — one line, each letter animated */}
+                    <div className="flag-title-wrap" aria-label={TITLE}>
+                        {TITLE.split('').map((char, i) => (
+                            <span
+                                key={i}
+                                className="flag-letter"
+                                style={{ animationDelay: `${i * 0.06}s` }}
+                            >
+                                {char === ' ' ? '\u00A0' : char}
+                            </span>
+                        ))}
+                    </div>
+
+                    {/* CTA Button */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 1.2, ease: 'easeOut' }}
+                    >
+                        <Link to="/create" className="btn-sexy">
+                            Join the Movement <ArrowRight size={18} />
+                        </Link>
+                    </motion.div>
+
+                </div>
+            </section>
+
+            {/* ── Mission Scroll Section ── */}
+            <section className="mission-scroll-section">
+
+                <div className="mission-block">
+                    <motion.div
+                        className="mission-content"
+                        initial={{ opacity: 0, y: 80 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: '-20%' }}
+                        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                        <div className="mission-icon"><BookOpen size={40} /></div>
+                        <h2>Acknowledge Generations.</h2>
+                        <p>
+                            We are building a living archive. From the oldest wisdom to the youngest voices,
+                            we capture and preserve the true story of Nigeria—told by the people who live it every day.
+                        </p>
+                    </motion.div>
+                </div>
+
+                <div className="mission-block alt">
+                    <motion.div
+                        className="mission-content"
+                        initial={{ opacity: 0, y: 80 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: '-20%' }}
+                        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+                    >
+                        <div className="mission-icon"><Cpu size={40} /></div>
+                        <h2>Empower the Future.</h2>
+                        <p>
+                            By putting the power of AI directly into the hands of students across the nation,
+                            we ensure no one is left behind. Learn the tools of tomorrow while telling the stories of today.
+                        </p>
+                    </motion.div>
+                </div>
+
+                <div className="mission-block center">
+                    <motion.div
+                        className="mission-content final-cta-block"
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true, margin: '-20%' }}
+                        transition={{ duration: 1, ease: 'easeOut' }}
+                    >
+                        <h2>Be part of the history<br />we are writing together.</h2>
+                        <Link to="/create" className="btn-sexy mt">
+                            Start Your Story
+                        </Link>
+                    </motion.div>
+                </div>
+
+            </section>
+
+        </div>
+    );
+}

@@ -1,0 +1,311 @@
+.create-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 0 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: white;
+}
+
+.step-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.step {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-muted);
+}
+
+.step.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #000;
+    box-shadow: 0 0 12px var(--primary-glow);
+    font-weight: 800;
+}
+
+.step-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    width: 40px;
+}
+
+.page-title-block h2 {
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.page-title-block p {
+    font-size: 1rem;
+}
+
+.mode-tabs {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 100px;
+    width: fit-content;
+}
+
+.tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.4rem;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    border-radius: 100px;
+    cursor: pointer;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.25s ease;
+}
+
+.tab-btn.active {
+    background: var(--primary);
+    color: #000;
+    font-weight: 700;
+    box-shadow: 0 4px 14px var(--primary-glow);
+}
+
+.tab-btn:not(.active):hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* ── Draw Layout ── */
+.draw-layout {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.canvas-wrap {
+    position: relative;
+    aspect-ratio: 1/1;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 0 0 2px rgba(242, 169, 0, 0.15), 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.portrait-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+    touch-action: none;
+}
+
+.circle-guide {
+    position: absolute;
+    inset: 8px;
+    border-radius: 50%;
+    border: 1.5px dashed rgba(255, 255, 255, 0.12);
+    pointer-events: none;
+}
+
+/* ── Tool Sidebar ── */
+.tool-sidebar {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    border-radius: 20px;
+}
+
+.tool-label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+}
+
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+}
+
+.color-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.color-dot:hover {
+    transform: scale(1.1);
+}
+
+.color-dot.sel {
+    border-color: white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+    transform: scale(1.12);
+}
+
+.range-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    outline: none;
+}
+
+.range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--primary);
+    cursor: pointer;
+    box-shadow: 0 0 6px var(--primary-glow);
+}
+
+.tool-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.tool-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tool-pill.active {
+    background: rgba(242, 169, 0, 0.15);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.tool-pill.danger:hover {
+    background: rgba(255, 100, 100, 0.12);
+    border-color: rgba(255, 100, 100, 0.4);
+    color: #ff6b6b;
+}
+
+/* ── Upload ── */
+.upload-zone {
+    width: 100%;
+}
+
+.dropzone {
+    padding: 5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+    border-radius: 24px;
+    cursor: pointer;
+    border: 2px dashed rgba(255, 255, 255, 0.1);
+    transition: border-color 0.3s, background 0.3s;
+}
+
+.dropzone:hover {
+    border-color: var(--primary);
+    background: rgba(242, 169, 0, 0.06);
+}
+
+.dropzone h3 {
+    color: white;
+}
+
+/* ── Next Bar ── */
+.next-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.hint {
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+@media (max-width: 720px) {
+    .draw-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .tool-sidebar {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .canvas-wrap {
+        max-width: 360px;
+        margin: 0 auto;
+    }
+
+    .next-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-lg {
+        justify-content: center;
+    }
+}

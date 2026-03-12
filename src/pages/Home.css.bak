@@ -1,0 +1,229 @@
+/* ══════════════════════════════════════
+   HOME — CINEMATIC
+══════════════════════════════════════ */
+.home-cinematic {
+  background: #000;
+  color: #fff;
+  position: relative;
+}
+
+/* ── HERO SPLASH ── */
+.hero-splash {
+  height: 100vh;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  background: #000;
+  /* Pitch black background — no puke green glow */
+  overflow: visible;
+  z-index: 1;
+}
+
+.hero-splash-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.5rem;
+  text-align: center;
+  padding: 0 1rem;
+  width: 100%;
+}
+
+/* ── FLAG WIND TEXT ── */
+.flag-title-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.flag-text-sweep {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 11vw, 11rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  display: inline-block;
+
+  /* Buffer padding so wide letters aren't cut by clipping */
+  padding: 0.1em 0.2em;
+
+  /* Sweeping flag gradient */
+  background: linear-gradient(110deg,
+      #008751 0%,
+      #00A65A 20%,
+      #ffffff 40%,
+      #ffffff 60%,
+      #00A65A 80%,
+      #008751 100%);
+  background-size: 200% auto;
+
+  /* Apply gradient to text */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  /* Flowing animation */
+  animation: flagSweep 3.5s ease-in-out infinite alternate;
+
+  filter: drop-shadow(0 10px 40px rgba(0, 166, 90, 0.2));
+}
+
+@keyframes flagSweep {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ── CTA BUTTON ── */
+.hero-action-box {
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+  padding-top: 1rem;
+}
+
+.btn-sexy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  /* very subtle */
+  color: #fff;
+  padding: 1.1rem 2.5rem;
+  border-radius: 100px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.btn-sexy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transition: left 0.5s;
+}
+
+.btn-sexy:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+
+.btn-sexy:hover::before {
+  left: 100%;
+}
+
+/* ── MISSION SCROLL ── */
+.mission-scroll-section {
+  position: relative;
+  z-index: 10;
+  background: #000;
+  padding: 15vh 0 20vh;
+  display: flex;
+  flex-direction: column;
+  gap: 15vh;
+}
+
+.mission-block {
+  display: flex;
+  align-items: center;
+  padding: 0 5%;
+}
+
+.mission-block.alt {
+  justify-content: flex-end;
+}
+
+.mission-block.center {
+  justify-content: center;
+  text-align: center;
+}
+
+.mission-content {
+  max-width: 700px;
+}
+
+.mission-icon {
+  color: #00A65A;
+  display: inline-flex;
+  padding: 1.5rem;
+  background: rgba(0, 166, 90, 0.08);
+  border: 1px solid rgba(0, 166, 90, 0.2);
+  border-radius: 24px;
+  margin-bottom: 2rem;
+}
+
+.mission-content h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+.mission-content p {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 300;
+}
+
+.final-cta-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.final-sparkle {
+  color: var(--secondary);
+  margin-bottom: 1rem;
+}
+
+.mt {
+  margin-top: 2rem;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+
+  .mission-block,
+  .mission-block.alt {
+    justify-content: flex-start;
+  }
+
+  .mission-content h2 {
+    font-size: 2.2rem;
+  }
+}

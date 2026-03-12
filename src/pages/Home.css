@@ -1,0 +1,288 @@
+/* ══════════════════════════════════════
+   HOME — THE NIGERIA STORY
+══════════════════════════════════════ */
+.home-cinematic {
+  background: radial-gradient(circle at 15% 50%, rgba(242, 169, 0, 0.08), transparent 50%),
+    radial-gradient(circle at 85% 30%, rgba(0, 196, 104, 0.06), transparent 50%),
+    #030303;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+/* ── Grain overlay ── */
+.vhs-grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* ══════════════════════════════════════
+   HERO SPLASH
+══════════════════════════════════════ */
+.hero-splash {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  overflow: hidden;
+}
+
+/* Faint texture video */
+.video-background-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.07;
+  filter: grayscale(1) blur(1px);
+}
+
+/* ── DOODLE CANVAS ── */
+.doodle-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Every path inside the canvas gets the draw-erase animation */
+.doodle-outline-path {
+  fill: none;
+  stroke: #F2A900;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 10;
+  stroke-dasharray: 100 100;
+  stroke-dashoffset: 100;
+  animation: drawErase 5s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 3px rgba(242, 169, 0, 0.5));
+  will-change: stroke-dashoffset, opacity;
+  transform: translateZ(0);
+  /* Hardware acceleration */
+}
+
+@keyframes drawErase {
+  0% {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 0.85;
+  }
+
+  38%,
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.85;
+  }
+}
+
+/* ── HERO CENTER CONTENT ── */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+}
+
+/* ── TITLE BLOCK ── */
+.hero-title-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 0.9;
+  gap: 0;
+  font-family: 'Lilita One', sans-serif;
+  font-weight: 400;
+  user-select: none;
+}
+
+.title-word {
+  display: inline-flex;
+  justify-content: center;
+  will-change: transform;
+  /* Hardware acceleration for letter bouncing */
+}
+
+.title-the {
+  font-size: clamp(1.4rem, 4.5vw, 5rem);
+  color: #F2A900;
+  letter-spacing: 0.55em;
+  padding-left: 0.55em;
+  /* compensate letter-spacing optical shift */
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.4);
+}
+
+.title-nigeria {
+  font-size: clamp(4.5rem, 14vw, 16rem);
+  color: #fff;
+  letter-spacing: -0.02em;
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.4);
+}
+
+.title-story {
+  font-size: clamp(2.8rem, 9vw, 10rem);
+  color: #fff;
+  letter-spacing: 0.1em;
+  padding-left: 0.1em;
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Tagline ── */
+.hero-tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.7rem, 1.2vw, 0.95rem);
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(242, 169, 0, 0.75);
+  margin: 0;
+  padding: 0;
+}
+
+/* ── CTA Button ── */
+.btn-80s {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #F2A900;
+  color: #000;
+  padding: 1rem 2.6rem;
+  border-radius: 6px;
+  font-family: 'Lilita One', 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 1.15rem;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  border: none;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 0 30px rgba(242, 169, 0, 0.5), 0 4px 16px rgba(242, 169, 0, 0.35);
+}
+
+.btn-80s:hover {
+  background: #ffc933;
+  box-shadow: 0 0 55px rgba(242, 169, 0, 0.75), 0 8px 28px rgba(242, 169, 0, 0.5);
+  transform: translateY(-3px) scale(1.03);
+}
+
+.btn-80s.mt {
+  margin-top: 1.5rem;
+}
+
+/* ══════════════════════════════════════
+   MISSION SCROLL
+══════════════════════════════════════ */
+.mission-scroll-section {
+  position: relative;
+  z-index: 10;
+  background: transparent;
+  padding: 15vh 0 20vh;
+  display: flex;
+  flex-direction: column;
+  gap: 15vh;
+}
+
+.mission-block {
+  display: flex;
+  align-items: center;
+  padding: 0 5%;
+}
+
+.mission-block.alt {
+  justify-content: flex-end;
+}
+
+.mission-block.center {
+  justify-content: center;
+  text-align: center;
+}
+
+.mission-content {
+  max-width: 700px;
+}
+
+.mission-icon {
+  color: #F2A900;
+  display: inline-flex;
+  padding: 1.5rem;
+  border: 1px solid rgba(242, 169, 0, 0.3);
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 20px rgba(242, 169, 0, 0.1);
+}
+
+.mission-content h2 {
+  font-family: 'Lilita One', 'Montserrat', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+.mission-content p {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.final-cta-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.final-sparkle {
+  color: #F2A900;
+  margin-bottom: 1rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .title-nigeria {
+    font-size: clamp(3.5rem, 18vw, 7rem);
+    letter-spacing: -0.01em;
+  }
+
+  .title-story {
+    font-size: clamp(2rem, 11vw, 5rem);
+  }
+
+  .title-the {
+    font-size: clamp(1rem, 5vw, 2.5rem);
+  }
+
+  .mission-block,
+  .mission-block.alt {
+    justify-content: flex-start;
+  }
+
+  .mission-content h2 {
+    font-size: 2.2rem;
+  }
+}
