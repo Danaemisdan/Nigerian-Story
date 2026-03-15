@@ -19,14 +19,23 @@ export default function RecordStory() {
     const mediaRecorderRef = useRef(null);
     const chunksRef = useRef([]);
 
-    const runPrediction = async (model, input) => {
+    const runPrediction = async (model, input, retries = 2) => {
         const res = await fetch('/api/create-prediction', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ model, input })
         });
         const prediction = await res.json();
-        if (!res.ok) throw new Error(prediction.error || 'Failed to start prediction');
+        
+        if (!res.ok) {
+            if (res.status === 429 && retries > 0) {
+                console.warn('429 Rate Limit hit. Retrying in 11s...');
+                setGenerationStep('Rate limited by Replicate (Wait 11s)...');
+                await new Promise(r => setTimeout(r, 11000));
+                return runPrediction(model, input, retries - 1);
+            }
+            throw new Error(prediction.error || 'Failed to start prediction');
+        }
         
         let status = prediction.status;
         let id = prediction.id;
@@ -70,6 +79,9 @@ export default function RecordStory() {
             // Step 2: Audio
             let audioSource = audioBlobBase64;
             if (mode === 'text') {
+                setGenerationStep('Cooling down for 11 seconds to guarantee Replicate limits...');
+                await new Promise(r => setTimeout(r, 11000));
+            
                 setGenerationStep('2/3: Generating Voice... (Queues can take 2-5 min)');
                 const barkOutput = await runPrediction(
                     "suno-ai/bark:b76242b40d67c76ab6742e987628a2a9ac019e11d56ab96c4e91ce03b79b2787",
@@ -81,6 +93,9 @@ export default function RecordStory() {
             if (!audioSource) throw new Error('Missing audio source. Please record or type a story.');
 
             // Step 3: SadTalker LipSync
+            setGenerationStep('Cooling down for 11 seconds to guarantee Replicate limits...');
+            await new Promise(r => setTimeout(r, 11000));
+            
             setGenerationStep('3/3: Animating LipSync Audio... (Almost done!)');
             const sadOutput = await runPrediction(
                  "cjwbw/sadtalker:a519cc0cfebaaeade068b23899165a11ec76aaa1d2b313d40d214f204ec957a3",
