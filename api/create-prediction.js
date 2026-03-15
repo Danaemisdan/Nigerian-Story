@@ -18,8 +18,12 @@ export default async function handler(req, res) {
     }
 
     try {
+        // Replicate's predictions.create strictly requires ONLY the 64-char version hash.
+        // It crashes the Python container if we pass the "owner/name:" prefix.
+        const versionHash = model.includes(':') ? model.split(':')[1] : model;
+
         const prediction = await replicate.predictions.create({
-            version: model,
+            version: versionHash,
             input: input
         });
 
